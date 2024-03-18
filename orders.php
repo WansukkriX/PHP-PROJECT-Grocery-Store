@@ -51,7 +51,7 @@ if(!isset($user_id)){
          while($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)){ 
    ?>
    <div class="box">
-      <p> วันที่วางสั่งซื้อ : <span><?= date('d/m/Y', strtotime($fetch_orders['placed_on'])); ?></span> </p>
+      <p> วันที่วางสั่งซื้อ : <span><?= $fetch_orders['placed_on']; ?></span> </p>
       <p> ชื่อ : <span><?= $fetch_orders['name']; ?></span> </p>
       <p> เบอร์โทรศัพท์ : <span><?= $fetch_orders['number']; ?></span> </p>
       <p> อีเมล์: <span><?= $fetch_orders['email']; ?></span> </p>
@@ -59,7 +59,7 @@ if(!isset($user_id)){
       <p> ช่องทางชำระเงิน : <span><?= $fetch_orders['method']; ?></span> </p>
       <p> คำสั่งซื้อของคุณ : <span><?= $fetch_orders['total_products']; ?></span> </p>
       <p> ราคารวม : <span>฿<?= $fetch_orders['total_price']; ?> -</span> </p>
-      <p> สถานะการชำระเงิน : <span style="color:<?php if($fetch_orders['payment_status'] == 'pending'){ echo 'red'; }else{ echo 'green'; }; ?>"><?= $fetch_orders['payment_status']; ?></span> </p>
+      <p> สถานะการชำระเงิน : <span style="color:<?php if($fetch_orders['payment_status'] == 'รอดำเนินการ'){ echo 'red'; }else{ echo 'green'; }; ?>"><?= $fetch_orders['payment_status']; ?></span> </p>
    </div>
    <?php
       }

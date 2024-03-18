@@ -17,12 +17,12 @@ if(isset($message)){
 }
 ?>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
-*{
-   font-family: "Noto Sans Thai", sans-serif;
-}
-</style>
+   <style>
+   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+   *{
+      font-family: "Noto Sans Thai", sans-serif;
+   }
+   </style>
 
 <header class="header">
 

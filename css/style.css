@@ -153,8 +153,12 @@
    font-size: 1.8rem;
    color:var(--black);
    border:var(--border);
-   width: 100%;
+   width: 20%;
 }
+
+/* .products .box-container .box .qty-1{
+   display: none;
+} */
 
 .quick-view .box{
    max-width: 50rem;

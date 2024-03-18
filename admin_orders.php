@@ -65,7 +65,7 @@ if(isset($_GET['delete'])){
       ?>
       <div class="box">
          <p> รหัสผู้ใช้ : <span><?= $fetch_orders['user_id']; ?></span> </p>
-         <p> วันที่สั่งซื้อ : <span><?= date('d/m/Y', strtotime($fetch_orders['placed_on'])); ?></span> </p>
+         <p> วันที่สั่งซื้อ : <span><?= $fetch_orders['placed_on']; ?></span> </p>
          <p> ชื่อ : <span><?= $fetch_orders['name']; ?></span> </p>
          <p> อีเมล์ : <span><?= $fetch_orders['email']; ?></span> </p>
          <p> เบอร์โทรศัพท์ : <span><?= $fetch_orders['number']; ?></span> </p>

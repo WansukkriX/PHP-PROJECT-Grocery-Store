@@ -72,10 +72,15 @@ section{
    border-radius: .5rem;
    color:var(--white);
    font-size: 2rem;
-   padding:1.3rem 3rem;
+   padding:1.3rem 1rem;
+   margin: 2px;
    text-transform: capitalize;
    cursor: pointer;
    text-align: center;
+}
+.add{
+   display: flex
+
 }
 
 .btn{

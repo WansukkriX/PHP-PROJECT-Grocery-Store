@@ -156,7 +156,7 @@ if(isset($_SESSION['user_id'])){
          while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
    ?>
    <form action="" class="box" method="POST">
-      <div class="price">฿<span><?= $fetch_products['price']; ?></span> -</div>
+      <div class="price"><span><?= $fetch_products['price']; ?></span> -</div>
       <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="fas fa-eye"></a>
       <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="" style="height: 300px;'">
       <div class="name"><?= $fetch_products['name']; ?></div>
@@ -165,8 +165,11 @@ if(isset($_SESSION['user_id'])){
       <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
       <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
       <input type="number" min="1" value="1" name="p_qty" class="qty">
+      <div class="add">
       <input type="submit" value="เพิ่มรายการที่ชอบ" class="option-btn" name="add_to_wishlist">
       <input type="submit" value="เพิ่มในตะกร้า" class="btn" name="add_to_cart">
+      </div>
+     
    </form>
    <?php
       }

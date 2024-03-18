@@ -6,9 +6,10 @@ session_start();
 
 $user_id = $_SESSION['user_id'];
 
-if(!isset($user_id)){
-   header('location:login.php');
-};
+// if(!isset($user_id)){
+//    header('location:login.php');
+// };
+// 
 
 if(isset($_GET['delete'])){
    $delete_id = $_GET['delete'];
@@ -89,11 +90,12 @@ if(isset($_POST['update_qty'])){
    </div>
 
    <div class="cart-total">
-      <p>รวมทั้งสิ้น : <span>฿<?= $grand_total; ?> - </span></p>
-      <a href="shop.php" class="option-btn">กลับหน้าแรก</a>
-      <a href="cart.php?delete_all" class="delete-btn <?= ($grand_total > 1)?'':'disabled'; ?>">ลบทั้งหมด</a>
-      <a href="checkout.php" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>">ชำระเงิน</a>
-   </div>
+    <p>รวมทั้งสิ้น : <span>฿<?= $grand_total; ?> - </span></p>
+    <a href="shop.php" class="option-btn">กลับหน้าแรก</a>
+    <a href="cart.php?delete_all" class="delete-btn <?= ($grand_total > 0) ? '' : 'disabled'; ?>">ลบทั้งหมด</a>
+    <a href="checkout.php" class="btn <?= ($grand_total > 0) ? '' : 'disabled'; ?>">ชำระเงิน</a>
+</div>
+
 
 </section>
 
