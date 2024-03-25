@@ -137,6 +137,7 @@ if(isset($_POST['add_to_cart'])){
 
         <input type="submit" value="เพิ่มลงในรายการ" class="option-btn" name="add_to_wishlist">
         <input type="submit" value="เพิ่มในตะกร้า" class="btn" name="add_to_cart">
+        
     <?php } ?>
    </form>
    <?php

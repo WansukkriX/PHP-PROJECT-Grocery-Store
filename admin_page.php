@@ -37,34 +37,29 @@ if(!isset($admin_id)){
 
    <div class="box-container">
 
-      <div class="box">
-      <?php
-         $total_pendings = 0;
-         $select_pendings = $conn->prepare("SELECT * FROM `orders` WHERE payment_status = ?");
-         $select_pendings->execute(['pending']);
-         while($fetch_pendings = $select_pendings->fetch(PDO::FETCH_ASSOC)){
-            $total_pendings += $fetch_pendings['total_price'];
-         };
-      ?>
-      <h3>฿<?= $total_pendings; ?> -</h3>
-      <!-- <p>total pendings</p> -->
-      <p>รวมยอดที่รอดำเนินการ</p>
-      <a href="admin_orders.php" class="btn">ดูคำสั่งซื้อ</a>
-      </div>
+   <div class="box">
+    <?php
+    $select_pendings = $conn->prepare("SELECT SUM(total_price) AS total_pending FROM `orders` WHERE payment_status = 'รอดำเนินการ'");
+    $select_pendings->execute();
+    $fetch_pendings = $select_pendings->fetch(PDO::FETCH_ASSOC);
+    $total_pending = $fetch_pendings['total_pending'];
+    ?>
+    <h3>฿<?= $total_pending ? $total_pending : 0; ?> -</h3>
+    <p>รวมยอดที่รอดำเนินการ</p>
+    <a href="admin_orders.php?status=pending" class="btn">ดูคำสั่งซื้อ</a>
+</div>
 
-      <div class="box">
-      <?php
-         $total_completed = 0;
-         $select_completed = $conn->prepare("SELECT * FROM `orders` WHERE payment_status = ?");
-         $select_completed->execute(['completed']);
-         while($fetch_completed = $select_completed->fetch(PDO::FETCH_ASSOC)){
-            $total_completed += $fetch_completed['total_price'];
-         };
-      ?>
-      <h3>฿<?= $total_completed; ?> -</h3>
-      <p>คำสั่งซื้อที่เสร็จสมบูรณ์</p>
-      <a href="admin_orders.php" class="btn">ดูคำสั่งซื้อ</a>
-      </div>
+<div class="box">
+    <?php
+    $select_completed = $conn->prepare("SELECT SUM(total_price) AS total_completed FROM `orders` WHERE payment_status = 'ดำเนินการเสร็จสิ้น'");
+    $select_completed->execute();
+    $fetch_completed = $select_completed->fetch(PDO::FETCH_ASSOC);
+    $total_completed = $fetch_completed['total_completed'];
+    ?>
+    <h3>฿<?= $total_completed ? $total_completed : 0; ?> -</h3>
+    <p>คำสั่งซื้อที่เสร็จสมบูรณ์</p>
+    <a href="admin_orders.php?status=completed" class="btn">ดูคำสั่งซื้อ</a>
+</div>
 
       <div class="box">
       <?php
@@ -108,10 +103,10 @@ if(!isset($admin_id)){
       ?>
       <h3><?= $number_of_admins; ?></h3>
       <p>ผู้ดูแลระบบทั้งหมด</p>
-      <a href="admin_users.php" class="btn">ดูบัญชี</a>
+      <a href="admin_admin.php" class="btn">ดูบัญชี</a>
       </div>
 
-      <div class="box">
+      <!-- <div class="box">
       <?php
          $select_accounts = $conn->prepare("SELECT * FROM `users`");
          $select_accounts->execute();
@@ -120,7 +115,7 @@ if(!isset($admin_id)){
       <h3><?= $number_of_accounts; ?></h3>
       <p>จำนวนบัญชีทั้งหมด</p>
       <a href="admin_users.php" class="btn">ดูบัญชี</a>
-      </div>
+      </div> -->
 
       <div class="box">
       <?php

@@ -47,10 +47,10 @@ if(isset($message)){
          <p><?= $fetch_profile['name']; ?></p>
          <a href="admin_update_profile.php" class="btn">จัดการโปรไฟล์</a>
          <a href="logout.php" class="delete-btn">ออกจากระบบ</a>
-         <div class="flex-btn">
+         <!-- <div class="flex-btn">
             <a href="login.php" class="option-btn">เข้าสู่ระบบ</a>
             <a href="register.php" class="option-btn">สมัคร</a>
-         </div>
+         </div> -->
       </div>
 
    </div>

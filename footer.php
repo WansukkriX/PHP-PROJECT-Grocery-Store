@@ -36,6 +36,6 @@
 
    </section>
 
-   <p class="credit"> &copy; copyright @ <?= date('Y'); ?> by <span></span> | all rights reserved! </p>
+   <p class="credit"> &copy; copyright @ <?= date('Y'); ?> by <span>wan</span> | all rights reserved! </p>
 
 </footer>

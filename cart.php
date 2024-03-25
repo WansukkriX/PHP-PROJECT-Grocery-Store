@@ -1,15 +1,8 @@
 <?php
-
 @include 'config.php';
-
 session_start();
 
 $user_id = $_SESSION['user_id'];
-
-// if(!isset($user_id)){
-//    header('location:login.php');
-// };
-// 
 
 if(isset($_GET['delete'])){
    $delete_id = $_GET['delete'];
@@ -62,7 +55,7 @@ if(isset($_POST['update_qty'])){
 
    <?php
       $grand_total = 0;
-      $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+      $select_cart = $conn->prepare("SELECT cart.*, products.stock FROM `cart` INNER JOIN `products` ON cart.pid = products.id WHERE cart.user_id = ?");
       $select_cart->execute([$user_id]);
       if($select_cart->rowCount() > 0){
          while($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)){ 
@@ -73,9 +66,10 @@ if(isset($_POST['update_qty'])){
       <img src="uploaded_img/<?= $fetch_cart['image']; ?>" alt="">
       <div class="name"><?= $fetch_cart['name']; ?></div>
       <div class="price">$<?= $fetch_cart['price']; ?> -</div>
+      <div class="stock">Stock: <?= $fetch_cart['stock']; ?></div>
       <input type="hidden" name="cart_id" value="<?= $fetch_cart['id']; ?>">
       <div class="flex-btn">
-         <input type="number" min="1" value="<?= $fetch_cart['quantity']; ?>" class="qty" name="p_qty">
+         <input type="number" min="1" max="<?= $fetch_cart['stock']; ?>" value="<?= $fetch_cart['quantity']; ?>" class="qty" name="p_qty">
          <input type="submit" value="แก้ไข้" name="update_qty" class="option-btn">
       </div>
       <div class="sub-total"> ยอดรวม : <span>$<?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</span> </div>

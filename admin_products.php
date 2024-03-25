@@ -20,6 +20,8 @@ if(isset($_POST['add_product'])){
    $category = filter_var($category, FILTER_SANITIZE_STRING);
    $details = $_POST['details'];
    $details = filter_var($details, FILTER_SANITIZE_STRING);
+   $stock = $_POST['stock'];
+   $stock = filter_var($stock, FILTER_SANITIZE_NUMBER_INT);
 
    $image = $_FILES['image']['name'];
    $image = filter_var($image, FILTER_SANITIZE_STRING);
@@ -34,8 +36,8 @@ if(isset($_POST['add_product'])){
       $message[] = 'product name already exist!';
    }else{
 
-      $insert_products = $conn->prepare("INSERT INTO `products`(name, category, details, price, image) VALUES(?,?,?,?,?)");
-      $insert_products->execute([$name, $category, $details, $price, $image]);
+      $insert_products = $conn->prepare("INSERT INTO `products`(name, category, details, price, stock, image) VALUES(?,?,?,?,?,?)");
+      $insert_products->execute([$name, $category, $details, $price, $stock, $image]);
 
       if($insert_products){
          if($image_size > 2000000){
@@ -70,7 +72,6 @@ if(isset($_GET['delete'])){
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,18 +98,19 @@ if(isset($_GET['delete'])){
    <form action="" method="POST" enctype="multipart/form-data">
       <div class="flex">
          <div class="inputBox">
-         <input type="text" name="name" class="box" required placeholder="ชื่อสินค้า">
-         <select name="category" class="box" required>
-            <option value="" selected disabled>เลือกหมวดหมู่</option>
+            <input type="text" name="name" class="box" required placeholder="ชื่อสินค้า">
+            <select name="category" class="box" required>
+               <option value="" selected disabled>เลือกหมวดหมู่</option>
                <option value="vegitables">ผัก</option>
                <option value="fruits">ผลไม้</option>
                <option value="meat">เนื้อ</option>
                <option value="fish">ปลา</option>
-         </select>
+            </select>
          </div>
          <div class="inputBox">
-         <input type="number" min="0" name="price" class="box" required placeholder="ราคา">
-         <input type="file" name="image" required class="box" accept="image/jpg, image/jpeg, image/png">
+            <input type="number" min="0" name="price" class="box" required placeholder="ราคา">
+            <input type="number" min="0" name="stock" class="box" required placeholder="จำนวนสินค้า">
+            <input type="file" name="image" required class=" box" style="width" accept="image/jpg, image/jpeg, image/png">
          </div>
       </div>
       <textarea name="details" class="box" required placeholder="รายละเอียดสินค้า" cols="30" rows="10"></textarea>
@@ -123,45 +125,47 @@ if(isset($_GET['delete'])){
 
    <div class="box-container">
 
-   <?php
-      $show_products = $conn->prepare("SELECT * FROM `products`");
-      $show_products->execute();
-      if($show_products->rowCount() > 0){
-         while($fetch_products = $show_products->fetch(PDO::FETCH_ASSOC)){  
-   ?>
-   <div class="box">
-      <div class="price">฿<?= $fetch_products['price']; ?> -</div>
-      <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-      <div class="name"><?= $fetch_products['name']; ?></div>
-      <div class="cat"><?= $fetch_products['category']; ?></div>
-      <div class="details"><?= $fetch_products['details']; ?></div>
-      <div class="flex-btn">
-         <a href="admin_update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">แก้ไข้</a>
-         <a href="admin_products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">ลบ</a>
+      <?php
+         $show_products = $conn->prepare("SELECT * FROM `products`");
+         $show_products->execute();
+         if($show_products->rowCount() > 0){
+            while($fetch_products = $show_products->fetch(PDO::FETCH_ASSOC)){  
+      ?>
+      <div class="box">
+         <div class="price">฿<?= $fetch_products['price']; ?> -</div>
+         <div class="stock">Stock: <?= $fetch_products['stock']; ?></div>
+         <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
+         <div class="name"><?= $fetch_products['name']; ?></div>
+         <div class="cat"><?= $fetch_products['category']; ?></div>
+         <div class="details"><?= $fetch_products['details']; ?></div>
+         <div class="flex-btn">
+            <a href="admin_update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">แก้ไข้</a>
+            <a href="admin_products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('คุณต้องการลบสินค้านี้หรือไม่?');">ลบ</a>
+         </div>
       </div>
-   </div>
-   <?php
+      <?php
+         }
+      }else{
+         echo '<p class="empty">ไม่มีสินค้าที่เพิ่มเข้ามาใหม่!</p>';
       }
-   }else{
-      echo '<p class="empty">ไม่มีสินค้าที่เพิ่มเข้ามาใหม่!</p>';
-   }
-   ?>
+      ?>
 
    </div>
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
 <script src="js/script.js"></script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

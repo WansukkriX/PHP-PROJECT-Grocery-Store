@@ -21,6 +21,8 @@ if(isset($_POST['update_product'])){
    $category = filter_var($category, FILTER_SANITIZE_STRING);
    $details = $_POST['details'];
    $details = filter_var($details, FILTER_SANITIZE_STRING);
+   $stock = $_POST['stock'];
+   $stock = filter_var($stock, FILTER_SANITIZE_NUMBER_INT);
 
    $image = $_FILES['image']['name'];
    $image = filter_var($image, FILTER_SANITIZE_STRING);
@@ -29,8 +31,8 @@ if(isset($_POST['update_product'])){
    $image_folder = 'uploaded_img/'.$image;
    $old_image = $_POST['old_image'];
 
-   $update_product = $conn->prepare("UPDATE `products` SET name = ?, category = ?, details = ?, price = ? WHERE id = ?");
-   $update_product->execute([$name, $category, $details, $price, $pid]);
+   $update_product = $conn->prepare("UPDATE `products` SET name = ?, category = ?, details = ?, price = ?, stock = ? WHERE id = ?");
+   $update_product->execute([$name, $category, $details, $price, $stock, $pid]);
 
    $message[] = 'product updated successfully!';
 
@@ -53,7 +55,6 @@ if(isset($_POST['update_product'])){
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,6 +91,7 @@ if(isset($_POST['update_product'])){
       <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
       <input type="text" name="name" placeholder="enter product name" required class="box" value="<?= $fetch_products['name']; ?>">
       <input type="number" name="price" min="0" placeholder="enter product price" required class="box" value="<?= $fetch_products['price']; ?>">
+      <input type="number" name="stock" min="0" placeholder="enter product stock" required class="box" value="<?= $fetch_products['stock']; ?>">
       <select name="category" class="box" required>
          <option selected><?= $fetch_products['category']; ?></option>
          <option value="vegitables">vegitables</option>
@@ -113,7 +115,45 @@ if(isset($_POST['update_product'])){
 
 </section>
 
+<?php
+   // ตรวจสอบว่ามีการส่งคำขอ update_product หรือไม่
+   if(isset($_POST['update_product'])){
+      // ดึงข้อมูลจากฟอร์ม
+      $pid = $_POST['pid'];
+      $name = $_POST['name'];
+      $price = $_POST['price'];
+      $stock = $_POST['stock'];
+      $category = $_POST['category'];
+      $details = $_POST['details'];
+      $old_image = $_POST['old_image'];
 
+      // ตรวจสอบว่ามีการเลือกไฟล์รูปภาพใหม่หรือไม่
+      if(!empty($_FILES['image']['name'])){
+         $new_image = $_FILES['image']['name'];
+         $image_tmp_name = $_FILES['image']['tmp_name'];
+         $image_folder = 'uploaded_img/'.$new_image;
+         
+         // อัปโหลดไฟล์รูปภาพใหม่
+         move_uploaded_file($image_tmp_name, $image_folder);
+      } else {
+         $new_image = $old_image; // ใช้รูปเก่าหากไม่มีการเลือกไฟล์ใหม่
+      }
+
+      // อัปเดตข้อมูลสินค้าในฐานข้อมูล
+      $update_product = $conn->prepare("UPDATE `products` SET name = ?, category = ?, details = ?, price = ?, stock = ?, image = ? WHERE id = ?");
+      $update_product->execute([$name, $category, $details, $price, $stock, $new_image, $pid]);
+
+      // ส่งข้อความบันทึกการอัปเดต
+      $message[] = 'Product updated successfully!';
+   }
+?>
+
+<?php include 'footer.php'; ?>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
 
 
 
