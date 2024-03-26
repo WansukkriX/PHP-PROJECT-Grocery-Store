@@ -4,11 +4,13 @@
 
 session_start();
 
-$user_id = $_SESSION['user_id'];
-
-if(!isset($user_id)){
-   header('location:login.php');
-};
+if(!isset($_SESSION['user_id'])){
+   // หากไม่มีให้กำหนดค่า user_id เป็นค่าเริ่มต้นที่ต่างจากผู้ใช้ที่ล็อกอิน
+   $user_id = 0; // หรือค่าอื่นตามต้องการ
+} else {
+   // หากมี session ให้กำหนดค่า user_id จาก session
+   $user_id = $_SESSION['user_id'];
+}
 
 if(isset($_POST['add_to_wishlist'])){
 

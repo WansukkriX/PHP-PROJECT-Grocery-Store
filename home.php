@@ -72,122 +72,128 @@ if(isset($_SESSION['user_id'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home page</title>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>home page</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+     <!-- font awesome cdn link  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+     <!-- custom css file link  -->
+     <link rel="stylesheet" href="css/style.css">
 
 
 </head>
+
 <body>
-   
-<?php include 'header.php'; ?>
 
-<div class="home-bg">
+     <?php include 'header.php'; ?>
 
-   <section class="home">
+     <div class="home-bg">
 
-      <div class="content">
-         <span>อาหารสดใหม่ กินแล้วขึ้แน่นอน</span>
-         <h3>เข้าถึงคุณเพื่อสุขภาพที่ดียิ่งขึ้นด้วยอาหารออร์แกนิก</h3>
-         <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto natus culpa officia quasi, accusantium explicabo?</p> -->
-         <a href="about.php" class="btn">เกี่ยวกับเรา</a>
-      </div>
+          <section class="home">
 
-   </section>
+               <div class="content">
+                    <span>อาหารสดใหม่ กินแล้วขึ้แน่นอน</span>
+                    <h3>เข้าถึงคุณเพื่อสุขภาพที่ดียิ่งขึ้นด้วยอาหารออร์แกนิก</h3>
+                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto natus culpa officia quasi, accusantium explicabo?</p> -->
+                    <a href="about.php" class="btn">เกี่ยวกับเรา</a>
+               </div>
 
-</div>
+          </section>
 
-<section class="home-category">
+     </div>
 
-   <h1 class="title">หมวดหมู่ สินค้า</h1>
+     <section class="home-category">
 
-   <div class="box-container">
+          <h1 class="title">หมวดหมู่ สินค้า</h1>
 
-      <div class="box">
-         <img src="images/cat-1.png"  height="100px" alt="">
-         <h3>ผลไม้</h3>
-         <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
-         <a href="category.php?category=fruits" class="btn">ผลไม้</a>
-      </div>
+          <div class="box-container">
 
-      <div class="box">
-         <img src="images/cat-2.png" height="150px" alt="">
-         <!-- <h3>เนื้อ</h3> -->
-         <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
-         <a href="category.php?category=meat" class="btn">เนื้อ</a>
-      </div>
+               <div class="box">
+                    <img src="images/cat-1.png" height="100px" alt="">
+                    <h3>ผลไม้</h3>
+                    <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
+                    <a href="category.php?category=fruits" class="btn">ผลไม้</a>
+               </div>
 
-      <div class="box">
-         <img src="images/cat-3.png" height="150px" alt="">
-         <!-- <h3>ผัก</h3> -->
-         <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
-         <a href="category.php?category=vegitables" class="btn">ผัก</a>
-      </div>
+               <div class="box">
+                    <img src="images/cat-2.png" height="150px" alt="">
+                    <!-- <h3>เนื้อ</h3> -->
+                    <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
+                    <a href="category.php?category=meat" class="btn">เนื้อ</a>
+               </div>
 
-      <div class="box">
-         <img src="images/cat-4.png" height="150px" alt="">
-         <!-- <h3>ปล้า</h3> -->
-         <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
-         <a href="category.php?category=fish" class="btn">ปลา</a>
-      </div>
+               <div class="box">
+                    <img src="images/cat-3.png" height="150px" alt="">
+                    <!-- <h3>ผัก</h3> -->
+                    <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
+                    <a href="category.php?category=ผัก" class="btn">ผัก</a>
+               </div>
 
-   </div>
+               <div class="box">
+                    <img src="images/cat-4.png" height="150px" alt="">
+                    <!-- <h3>ปล้า</h3> -->
+                    <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
+                    <a href="category.php?category=fish" class="btn">ปลา</a>
+               </div>
 
-</section>
+          </div>
 
-<section class="products">
+     </section>
 
-   <h1 class="title">สินค้าใหม่ล่าสุด </h1>
+     <section class="products">
 
-   <div class="box-container">
+          <h1 class="title">สินค้าใหม่ล่าสุด </h1>
 
-   <?php
+          <div class="box-container">
+
+               <?php
       $select_products = $conn->prepare("SELECT * FROM `products` LIMIT 6");
       $select_products->execute();
       if($select_products->rowCount() > 0){
          while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
-   ?>
-   <form action="" class="box" method="POST">
-      <a href="">
-          <div class="price"><span><?= $fetch_products['price']; ?></span> -</div>
-      <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="fas fa-eye"></a>
-      <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="" style="height: 300px;'">
-      <div class="name"><?= $fetch_products['name']; ?></div>
-      <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
-      <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
-      <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
-      <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
-      <input type="number" min="1" value="1" name="p_qty" class="qty">
-      <div class="add">
-       <input type="submit" value="เพิ่มรายการที่ชอบ" class="option-btn" name="add_to_wishlist">
-       <input type="submit" value="เพิ่มในตะกร้า" class="btn" name="add_to_cart">
-      </div>
-     
-      </a>
-     
-   </form>
-   <?php
+      ?>
+               <form action="" class="box" method="POST">
+                    <a href="">
+                         <div class="price"> <span>฿ <?= $fetch_products['price']; ?></span></div>
+                         <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
+                         
+                         <div class="name"><?= $fetch_products['name']; ?></div>
+                         <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
+                         <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
+                         <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
+                         <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
+                         <input type="number" min="1" value="1" name="p_qty" class="qty" style="display:none" >
+                         <div class="add">
+                              <a href="view_page.php?pid=<?= $fetch_products['id']; ?>"
+                                   class="option-btn">รายละเอียด</a>
+                              <?php if (isset($_SESSION['user_id'])) { ?>
+                              <input type="submit" value="เพิ่มในตะกร้า" class="btn" name="add_to_cart">
+                              <?php } ?>
+                         </div>
+
+                    </a>
+
+               </form>
+               <?php
       }
    }else{
       echo '<p class="empty">no products added yet!</p>';
    }
    ?>
 
-   </div>
+          </div>
 
-</section>
+     </section>
 
-<?php include 'footer.php'; ?>
+     <?php include 'footer.php'; ?>
 
-<script src="js/script.js"></script>
+     <script src="js/script.js"></script>
 
 </body>
+
 </html>

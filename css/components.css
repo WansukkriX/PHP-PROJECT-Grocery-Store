@@ -64,6 +64,7 @@ section{
 }
 
 .btn,
+.btn-d,
 .delete-btn,
 .option-btn{
    display: block;
@@ -85,6 +86,9 @@ section{
 
 .btn{
    background-color: var(--green);
+}
+.btn-d{
+   background-color: var(--light-color);
 }
 
 .delete-btn{
@@ -376,26 +380,31 @@ section{
 
 .footer{
    background-color: var(--white);
+  
 }
 
 .footer .box-container{
+   
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
-   gap:2.5rem;
-   align-items: flex-start;
+   grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+   gap:6rem;
+   align-items: flex-end;
 }
 
 .footer .box-container .box h3{
    text-transform: uppercase;
    color:var(--black);
-   margin-bottom: 2rem;
+   margin-bottom: 1.5rem;
    font-size: 2rem;
+}
+.footer .box-container .box {
+   margin: auto;
 }
 
 .footer .box-container .box a,
 .footer .box-container .box p{
    display: block;
-   padding:1.3rem 0;
+   padding:1.1rem 0;
    font-size: 1.6rem;
    color:var(--light-color);
 }

@@ -101,18 +101,19 @@ if(isset($_GET['delete'])){
             <input type="text" name="name" class="box" required placeholder="ชื่อสินค้า">
             <select name="category" class="box" required>
                <option value="" selected disabled>เลือกหมวดหมู่</option>
-               <option value="vegitables">ผัก</option>
-               <option value="fruits">ผลไม้</option>
-               <option value="meat">เนื้อ</option>
+               <option value="ผัก">ผัก</option>
+               <option value="ผลไม้">ผลไม้</option>
+               <option value="เนื้อ">เนื้อ</option>
                <option value="fish">ปลา</option>
             </select>
          </div>
          <div class="inputBox">
             <input type="number" min="0" name="price" class="box" required placeholder="ราคา">
             <input type="number" min="0" name="stock" class="box" required placeholder="จำนวนสินค้า">
-            <input type="file" name="image" required class=" box" style="width" accept="image/jpg, image/jpeg, image/png">
          </div>
       </div>
+      <input type="file" name="image" required class=" box" style="width" accept="image/jpg, image/jpeg, image/png">
+
       <textarea name="details" class="box" required placeholder="รายละเอียดสินค้า" cols="30" rows="10"></textarea>
       <input type="submit" class="btn" value="เพิ่มสินค้า" name="add_product">
    </form>
@@ -133,11 +134,12 @@ if(isset($_GET['delete'])){
       ?>
       <div class="box">
          <div class="price">฿<?= $fetch_products['price']; ?> -</div>
-         <div class="stock">Stock: <?= $fetch_products['stock']; ?></div>
+         <div class="stock">มีสินค้าทั้งหมด <span><?= $fetch_products['stock']; ?> </span>ชิ้น </div>
+         
          <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
          <div class="name"><?= $fetch_products['name']; ?></div>
          <div class="cat"><?= $fetch_products['category']; ?></div>
-         <div class="details"><?= $fetch_products['details']; ?></div>
+         <!-- <div class="details"><?= $fetch_products['details']; ?></div> -->
          <div class="flex-btn">
             <a href="admin_update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">แก้ไข้</a>
             <a href="admin_products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('คุณต้องการลบสินค้านี้หรือไม่?');">ลบ</a>

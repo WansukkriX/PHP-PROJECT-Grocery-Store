@@ -22,13 +22,26 @@ if(isset($message)){
    *{
       font-family: "Noto Sans Thai", sans-serif;
    }
+   .icons{
+      position: relative;
+   }
+
+   .icons span{
+      font-weight:500;
+      position:absolute;
+      top: -5px;
+      color:var(--light-color);
+      
+   }
+
+  
    </style>
 
 <header class="header">
 
    <div class="flex">
 
-      <a href="admin_page.php" class="logo">ขอบตากูดำหมดแล้ว<span>.</span></a>
+      <a href="admin_page.php" class="logo">ปวด<span>หลัง</span></a>
 
       <nav class="navbar">
          <a href="home.php">หน้าแรก</a>
@@ -41,7 +54,7 @@ if(isset($message)){
       <div class="icons">
          <div id="menu-btn" class="fas fa-bars"></div>
          <div id="user-btn" class="fas fa-user"></div>
-         <a href="search_page.php" class="fas fa-search"></a>
+         <!-- <a href="search_page.php" class="fas fa-search"></a> -->
 
          <?php
             // ตรวจสอบการเข้าสู่ระบบและนับจำนวนรายการในตะกร้าและรายการที่ชอบ
@@ -52,8 +65,8 @@ if(isset($message)){
                $count_wishlist_items->execute([$user_id]);
          ?>
             <!-- แสดงปุ่มรายการที่ชอบและรายการในตะกร้า -->
-            <a href="wishlist.php"><i class="fas fa-heart"></i><span>(<?= $count_wishlist_items->rowCount(); ?>)</span></a>
-            <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(<?= $count_cart_items->rowCount(); ?>)</span></a>
+            <!-- <a href="wishlist.php"><i class="fas fa-heart"></i><span>(<?= $count_wishlist_items->rowCount(); ?>)</span></a> -->
+            <a href="cart.php"><i class="fas fa-shopping-cart"></i><span style="color:red"><?= $count_cart_items->rowCount(); ?></span></a>
          <?php
             } // ปิดเงื่อนไขการเข้าสู่ระบบ
          ?>

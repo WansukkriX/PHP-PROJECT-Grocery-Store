@@ -96,52 +96,80 @@ if(isset($_POST['add_to_cart'])){
 </head>
 <body>
    
+
+
+
+
 <?php include 'header.php'; ?>
 
+
+
 <section class="p-category">
-
-   <a href="category.php?category=fruits">ผลไม้</a>
-   <a href="category.php?category=vegitables">ผัก</a>
-   <a href="category.php?category=fish">ปลา</a>
-   <a href="category.php?category=meat">เนื้อ</a>
-
+   <a href="category.php?category=fruits">กระเช้าดอกไม้</a>
+   <a href="category.php?category=vegitables">ช่อดอกไม้</a>
+   <a href="category.php?category=fish">แจกันดอกไม้</a>
+   <a href="category.php?category=meat">กล่องดอกไม้</a>
 </section>
 
 <section class="products">
+   
+<section class="search-form">
+
+<form action="" method="POST">
+   <input type="text" class="box" name="search_box" placeholder="ค้นหาสิ้นค้า...">
+   <input type="submit" name="search_btn" value="ค้นหา" class="btn">
+</form>
+</section>
 
    <h1 class="title">สินค้าทั้งหมด</h1>
 
-   <div class="box-container">
+   
 
-   <?php
-      $select_products = $conn->prepare("SELECT * FROM `products`");
-      $select_products->execute();
+   <div class="box-container">
+      <?php
+      // เช็คว่ามีการกดปุ่มค้นหาหรือไม่
+      if(isset($_POST['search_btn'])){
+         // ดึงค่าคำค้นหา
+         $search_query = $_POST['search_box'];
+         // ค้นหาสินค้าที่มีชื่อหรือรายละเอียดตรงกับคำค้นหา
+         $select_products = $conn->prepare("SELECT * FROM `products` WHERE name LIKE ? OR details LIKE ?");
+         $select_products->execute(["%$search_query%", "%$search_query%"]);
+      } else {
+         // หากไม่มีการค้นหา แสดงสินค้าทั้งหมด
+         $select_products = $conn->prepare("SELECT * FROM `products`");
+         $select_products->execute();
+      }
+      // แสดงผลลัพธ์การค้นหาหรือสินค้าทั้งหมด
       if($select_products->rowCount() > 0){
          while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
-   ?>
-   <form action="" class="box" method="POST">
-      <div class="price">$<span><?= $fetch_products['price']; ?></span> -</div>
-      <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="fas fa-eye"></a>
-      <img src="uploaded_img/<?= $fetch_products['image']; ?>" height="280px" alt="">
-      <div class="name"><?= $fetch_products['name']; ?></div>
-      <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
-      <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
-      <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
-      <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
-      <input type="number" min="1" value="1" name="p_qty" class="qty">
-      <input type="submit" value="เพิ่มสิ่งที่ชอบ" class="option-btn" name="add_to_wishlist">
-      <input type="submit" value="เพิ่มตะกล้า" class="btn" name="add_to_cart">
-   </form>
-   <?php
+      ?>
+      <form action="" class="box" method="POST">
+         <div class="price">$<span><?= $fetch_products['price']; ?></span> -</div>
+         <img src="uploaded_img/<?= $fetch_products['image']; ?>" height="280px" alt="">
+         <div class="name"><?= $fetch_products['name']; ?></div>
+         <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
+         <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
+         <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
+         <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
+         <input type="number" min="1" value="1" name="p_qty" class="qty" style="display:none" >
+         <!-- <input type="submit" value="เพิ่มสิ่งที่ชอบ" class="option-btn" name="add_to_wishlist"> -->
+        <div class="add">
+                              <a href="view_page.php?pid=<?= $fetch_products['id']; ?>"
+                                   class="option-btn">รายละเอียด</a>
+                              <?php if (isset($_SESSION['user_id'])) { ?>
+                              <input type="submit" value="เพิ่มในตะกร้า" class="btn" name="add_to_cart">
+                              <?php } ?>
+                         </div>
+      </form>
+      <?php
+         }
+      } else {
+         echo '<p class="empty">No products found!</p>';
       }
-   }else{
-      echo '<p class="empty">no products added yet!</p>';
-   }
-   ?>
-
+      ?>
    </div>
-
 </section>
+
 
 
 

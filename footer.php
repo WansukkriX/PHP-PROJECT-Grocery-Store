@@ -2,20 +2,20 @@
 
    <section class="box-container">
 
-      <div class="box">
+      <!-- <div class="box">
          <h3>ลิงก์ด่วน</h3>
          <a href="home.php"> <i class="fas fa-angle-right"></i> หน้าแรก</a>
          <a href="shop.php"> <i class="fas fa-angle-right"></i> สินค้า</a>
          <a href="about.php"> <i class="fas fa-angle-right"></i> เกี่ยวกับ</a>
          <a href="contact.php"> <i class="fas fa-angle-right"></i> ติดต่อ</a>
-      </div>
+      </div> -->
 
       <div class="box">
-         <h3>ลิงก์เพิ่มเติม</h3>
-         <a href="cart.php"> <i class="fas fa-angle-right"></i> ตะกร้า</a>
-         <a href="wishlist.php"> <i class="fas fa-angle-right"></i> สิ่งที่ชอบ</a>
-         <a href="login.php"> <i class="fas fa-angle-right"></i> เข้าสู่ระบบ</a>
-         <a href="register.php"> <i class="fas fa-angle-right"></i> สร้างบัญชี</a>
+         <h3>หมวดหมู่</h3>
+         <a href="cart.php"> <i class="fas fa-angle-right"></i> #</a>
+         <a href="wishlist.php"> <i class="fas fa-angle-right"></i> #</a>
+         <a href="login.php"> <i class="fas fa-angle-right"></i> #</a>
+         <a href="register.php"> <i class="fas fa-angle-right"></i> #</a>
       </div>
 
       <div class="box">
@@ -36,6 +36,6 @@
 
    </section>
 
-   <p class="credit"> &copy; copyright @ <?= date('Y'); ?> by <span>wan</span> | all rights reserved! </p>
+ 
 
 </footer>

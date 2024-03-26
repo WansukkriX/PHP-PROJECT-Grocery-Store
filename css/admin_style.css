@@ -50,7 +50,7 @@
 }
 
 .add-products form .flex .inputBox{
-   width: 50%;
+   width: 49%;
 }
 
 .add-products form .box{
@@ -97,13 +97,27 @@
    padding:1rem;
    font-size: 2rem;
    color:var(--white);
-   background-color: var(--red);
+   background-color: var(--green);
    border-radius: .5rem;
+}
+
+.show-products  .box-container .box .stock{
+   padding:1rem 0;
+  
+   font-size: 2rem;
+   margin-left: 20px;
+}
+.show-products  .box-container .box .stock span{
+   font-size: 1.8rem;
+   color:var(--green);
+   margin:0 .2rem;
 }
 
 .show-products .box-container .box img{
    width: 100%;
    margin-bottom: 1rem;
+   object-fit: contain;
+   height: 200px;
 }
 
 .show-products .box-container .box .name{
