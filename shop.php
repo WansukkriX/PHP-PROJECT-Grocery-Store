@@ -81,52 +81,54 @@ if(isset($_POST['add_to_cart'])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>shop</title>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>shop</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+     <!-- font awesome cdn link  -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+     <!-- custom css file link  -->
+     <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
-   
 
 
 
 
-<?php include 'header.php'; ?>
+
+     <?php include 'header.php'; ?>
 
 
 
-<section class="p-category">
-   <a href="category.php?category=fruits">กระเช้าดอกไม้</a>
-   <a href="category.php?category=vegitables">ช่อดอกไม้</a>
-   <a href="category.php?category=fish">แจกันดอกไม้</a>
-   <a href="category.php?category=meat">กล่องดอกไม้</a>
-</section>
+     <section class="p-category">
+          <a href="category.php?category=fruits">กระเช้าดอกไม้</a>
+          <a href="category.php?category=vegitables">ช่อดอกไม้</a>
+          <a href="category.php?category=fish">แจกันดอกไม้</a>
+          <a href="category.php?category=meat">กล่องดอกไม้</a>
+     </section>
 
-<section class="products">
-   
-<section class="search-form">
+     <section class="products">
 
-<form action="" method="POST">
-   <input type="text" class="box" name="search_box" placeholder="ค้นหาสิ้นค้า...">
-   <input type="submit" name="search_btn" value="ค้นหา" class="btn">
-</form>
-</section>
+          <section class="search-form">
 
-   <h1 class="title">สินค้าทั้งหมด</h1>
+               <form action="" method="POST">
+                    <input type="text" class="box" name="search_box" placeholder="ค้นหาสิ้นค้า...">
+                    <input type="submit" name="search_btn" value="ค้นหา" class="btn">
+               </form>
+          </section>
 
-   
+          <h1 class="title">สินค้าทั้งหมด</h1>
 
-   <div class="box-container">
-      <?php
+
+
+          <div class="box-container">
+               <?php
       // เช็คว่ามีการกดปุ่มค้นหาหรือไม่
       if(isset($_POST['search_btn'])){
          // ดึงค่าคำค้นหา
@@ -143,32 +145,32 @@ if(isset($_POST['add_to_cart'])){
       if($select_products->rowCount() > 0){
          while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
       ?>
-      <form action="" class="box" method="POST">
-         <div class="price">$<span><?= $fetch_products['price']; ?></span> -</div>
-         <img src="uploaded_img/<?= $fetch_products['image']; ?>" height="280px" alt="">
-         <div class="name"><?= $fetch_products['name']; ?></div>
-         <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
-         <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
-         <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
-         <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
-         <input type="number" min="1" value="1" name="p_qty" class="qty" style="display:none" >
-         <!-- <input type="submit" value="เพิ่มสิ่งที่ชอบ" class="option-btn" name="add_to_wishlist"> -->
-        <div class="add">
-                              <a href="view_page.php?pid=<?= $fetch_products['id']; ?>"
-                                   class="option-btn">รายละเอียด</a>
-                              <?php if (isset($_SESSION['user_id'])) { ?>
+               <form action="" class="box" method="POST">
+                    <div class="price">$<span><?= $fetch_products['price']; ?></span> -</div>
+                    <img src="uploaded_img/<?= $fetch_products['image']; ?>" height="280px" alt="">
+                    <div class="name"><?= $fetch_products['name']; ?></div>
+                    <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
+                    <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
+                    <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
+                    <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
+                    <input type="number" min="1" value="1" name="p_qty" class="qty" style="display:none">
+                    <!-- <input type="submit" value="เพิ่มสิ่งที่ชอบ" class="option-btn" name="add_to_wishlist"> -->
+                    <div class="add">
+                         <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="option-btn">รายละเอียด</a>
+                         
+                         <!-- <?php if (isset($_SESSION['user_id'])) { ?>
                               <input type="submit" value="เพิ่มในตะกร้า" class="btn" name="add_to_cart">
-                              <?php } ?>
-                         </div>
-      </form>
-      <?php
+                              <?php } ?> -->
+                    </div>
+               </form>
+               <?php
          }
       } else {
          echo '<p class="empty">No products found!</p>';
       }
       ?>
-   </div>
-</section>
+          </div>
+     </section>
 
 
 
@@ -178,9 +180,10 @@ if(isset($_POST['add_to_cart'])){
 
 
 
-<?php include 'footer.php'; ?>
+     <?php include 'footer.php'; ?>
 
-<script src="js/script.js"></script>
+     <script src="js/script.js"></script>
 
 </body>
+
 </html>

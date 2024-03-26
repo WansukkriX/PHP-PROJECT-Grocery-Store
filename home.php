@@ -171,9 +171,9 @@ if(isset($_SESSION['user_id'])){
                          <div class="add">
                               <a href="view_page.php?pid=<?= $fetch_products['id']; ?>"
                                    class="option-btn">รายละเอียด</a>
-                              <?php if (isset($_SESSION['user_id'])) { ?>
+                              <!-- <?php if (isset($_SESSION['user_id'])) { ?>
                               <input type="submit" value="เพิ่มในตะกร้า" class="btn" name="add_to_cart">
-                              <?php } ?>
+                              <?php } ?> -->
                          </div>
 
                     </a>

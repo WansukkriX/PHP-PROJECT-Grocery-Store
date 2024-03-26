@@ -120,30 +120,34 @@ if(isset($_POST['add_to_cart'])){
                while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
           ?>
           <form action="" class="box" method="POST">
-               <div class="price">฿<span><?= $fetch_products['price']; ?></span> -</div>
+    <div class="price">฿<span><?= $fetch_products['price']; ?></span> -</div>
 
-               <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-               <div class="name"><?= $fetch_products['name']; ?></div>
-               <div class="details"><?= $fetch_products['details']; ?></div>
-               <div class="details">จำนวน: <?= $fetch_products['stock']; ?>
-                    <?php if ($fetch_products['stock'] == 0) { ?>
-                    <span style="color: red;">(สินค้าหมด)</span>
-                    <?php } else { ?>
-                    <input type="number" min="1" max="<?= $fetch_products['stock']; ?>" value="1" name="p_qty" class="qty">
-                    <?php } ?>
+    <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
+    <div class="name"><?= $fetch_products['name']; ?></div>
+    <div class="details"><?= $fetch_products['details']; ?></div>
+    <div class="details">จำนวน: <?= $fetch_products['stock']; ?>
+        <?php if ($fetch_products['stock'] == 0) { ?>
+            <span style="color: red;">(สินค้าหมด)</span>
+        <?php } else { ?>
+            <input type="number" min="1" max="<?= $fetch_products['stock']; ?>" value="1" name="p_qty" class="qty">
+        <?php } ?>
 
-                    <?php if (isset($_SESSION['user_id'])) { ?>
-                    <input type="submit" value="เพิ่มในตะกร้า" class="btn" name="add_to_cart">
-                    <!-- <input type="submit" value="เพิ่มลงในรายการ" class="option-btn" name="add_to_wishlist"> -->
-                    <?php } else { ?>
-                    <a href="login.php" class="option-btn">เข้าสู่ระบบ เพื่อทำการเพิ่มสินค้า</a> 
-                    <?php } ?>
-               </div>
-               <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
-               <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
-               <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
-               <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
-          </form>
+        <?php if (isset($_SESSION['user_id'])) { ?>
+            <?php if ($fetch_products['stock'] > 0) { ?>
+                <input type="submit" value="เพิ่มในตะกร้า" class="btn" name="add_to_cart">
+            <?php } else { ?>
+                <input type="submit" value="เพิ่มในตะกร้า" class="btn-d" name="add_to_cart" disabled>
+            <?php } ?>
+            <!-- <input type="submit" value="เพิ่มลงในรายการ" class="option-btn" name="add_to_wishlist"> -->
+        <?php } else { ?>
+            <a href="login.php" class="btn">เข้าสู่ระบบ เพื่อทำการเพิ่มสินค้า</a> 
+        <?php } ?>
+    </div>
+    <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
+    <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
+    <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
+    <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
+</form>
           <?php
                }
           } else {
