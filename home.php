@@ -99,7 +99,6 @@ if(isset($_SESSION['user_id'])){
                <div class="content">
                     <span>อาหารสดใหม่ กินแล้วขึ้แน่นอน</span>
                     <h3>เข้าถึงคุณเพื่อสุขภาพที่ดียิ่งขึ้นด้วยอาหารออร์แกนิก</h3>
-                    <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto natus culpa officia quasi, accusantium explicabo?</p> -->
                     <a href="about.php" class="btn">เกี่ยวกับเรา</a>
                </div>
 
@@ -112,37 +111,33 @@ if(isset($_SESSION['user_id'])){
           <h1 class="title">หมวดหมู่ สินค้า</h1>
 
           <div class="box-container">
-
+<!-- หมวดหมู่ -->
                <div class="box">
-                    <img src="images/cat-1.png" height="100px" alt="">
-                    <h3>ผลไม้</h3>
-                    <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
-                    <a href="category.php?category=fruits" class="btn">ผลไม้</a>
+                    <img src="images/cat-1.png"  alt="">
+                    
+                    <a href="category.php?category=ผลไม้" class="btn">ผลไม้</a>
                </div>
 
                <div class="box">
-                    <img src="images/cat-2.png" height="150px" alt="">
-                    <!-- <h3>เนื้อ</h3> -->
-                    <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
-                    <a href="category.php?category=meat" class="btn">เนื้อ</a>
+                    <img src="images/cat-2.png"  alt="">
+                   
+                    <a href="category.php?category=เนื้อ" class="btn">เนื้อ</a>
                </div>
 
                <div class="box">
-                    <img src="images/cat-3.png" height="150px" alt="">
-                    <!-- <h3>ผัก</h3> -->
-                    <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
+                    <img src="images/cat-3.png"  alt="">
+                   
                     <a href="category.php?category=ผัก" class="btn">ผัก</a>
                </div>
 
                <div class="box">
-                    <img src="images/cat-4.png" height="150px" alt="">
-                    <!-- <h3>ปล้า</h3> -->
-                    <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat.</p> -->
-                    <a href="category.php?category=fish" class="btn">ปลา</a>
+                    <img src="images/cat-4.png"  alt="">
+                   
+                    <a href="category.php?category=ปลา" class="btn">ปลา</a>
                </div>
 
           </div>
-
+<!-- หมวดหมู่/ -->
      </section>
 
      <section class="products">
@@ -171,9 +166,7 @@ if(isset($_SESSION['user_id'])){
                          <div class="add">
                               <a href="view_page.php?pid=<?= $fetch_products['id']; ?>"
                                    class="option-btn">รายละเอียด</a>
-                              <!-- <?php if (isset($_SESSION['user_id'])) { ?>
-                              <input type="submit" value="เพิ่มในตะกร้า" class="btn" name="add_to_cart">
-                              <?php } ?> -->
+                             
                          </div>
 
                     </a>

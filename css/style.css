@@ -63,6 +63,8 @@
 .home-category .box-container .box img{
    width: 100%;
    margin-bottom: 1rem;
+   object-fit: contain;
+   height: 100px;
 }
 
 .home-category .box-container .box h3{
@@ -197,7 +199,7 @@
    top:1rem; left:1rem;
    padding:1rem;
    border-radius: .5rem;
-   background-color: var(--red);
+   background-color: var(--green);
    font-size: 1.rem;
    color:var(--white);
 }
@@ -534,7 +536,7 @@
 
 .shopping-cart .box-container .box .price{
    padding:1rem 0;
-   color:var(--red);
+   color:var(--green);
    font-size: 2.5rem;
 }
 .shopping-cart .box-container .box .stock{
@@ -549,6 +551,19 @@
    margin:0 .2rem;
 }
 .shopping-cart .box-container .box .stock span{
+   font-size: 1.8rem;
+   color:var(--green);
+   margin:0 .2rem;
+}
+
+
+.quick-view  .box .stock{
+   padding:1rem 0;
+  
+   font-size: 2rem;
+}
+
+.quick-view .box .stock span{
    font-size: 1.8rem;
    color:var(--green);
    margin:0 .2rem;

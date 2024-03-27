@@ -31,11 +31,11 @@ if(isset($_POST['submit'])){
          header('location:home.php');
 
       }else{
-         $message[] = 'no user found!';
+         $message[] = '<span style="color: red;">ไม่พบผู้ใช้!</span>';
       }
 
    }else{
-      $message[] = 'incorrect email or password!';
+      $message[] = '<span style="color: red;">อีเมลหรือรหัสผ่านไม่ถูกต้อง!</span>';
    }
 
 }

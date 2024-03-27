@@ -44,17 +44,19 @@ if(isset($message)){
       <a href="admin_page.php" class="logo">ปวด<span>หลัง</span></a>
 
       <nav class="navbar">
-         <a href="home.php">หน้าแรก</a>
-         <a href="shop.php">สินค้า</a>
-         <a href="orders.php">คำสั่งซื้อ</a>
-         <a href="about.php">เกี่ยวกับ</a>
-         <a href="contact.php">ติดต่อ</a>
-      </nav>
+    <a href="home.php">หน้าแรก</a>
+    <a href="shop.php">สินค้า</a>
+    <?php if(isset($_SESSION['user_id'])): ?>
+        <a href="orders.php">คำสั่งซื้อ</a>
+    <?php endif; ?>
+    <a href="about.php">เกี่ยวกับ</a>
+    <a href="contact.php">ติดต่อ</a>
+</nav>
 
       <div class="icons">
          <div id="menu-btn" class="fas fa-bars"></div>
          <div id="user-btn" class="fas fa-user"></div>
-         <!-- <a href="search_page.php" class="fas fa-search"></a> -->
+        
 
          <?php
             // ตรวจสอบการเข้าสู่ระบบและนับจำนวนรายการในตะกร้าและรายการที่ชอบ

@@ -54,13 +54,13 @@ if(isset($_POST['order'])){
         $order_query->execute([$name, $number, $email, $method, $address, $total_products, $cart_total]);
 
         if($order_query->rowCount() > 0) {
-            $message[] = 'คำสั่งซื้อได้ทำการส่งแล้ว!';
+            $message[] = '<span style="color:green;" >คำสั่งซื้อได้ทำการส่งแล้ว!</span>';
         } elseif($cart_total < 0) {
             $message[] = 'จำนวนสินค้าไม่ถูกต้อง';
         } elseif($cart_total == 0) {
             $message[] = 'สินค้าหมด!';
         } else {
-            // Check if any product is out of stock before placing order
+         
             $out_of_stock = false;
             $cart_query = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
             $cart_query->execute([$user_id]);
@@ -69,14 +69,13 @@ if(isset($_POST['order'])){
                     $product_id = $cart_item['pid'];
                     $quantity_ordered = $cart_item['quantity'];
 
-                    // Check available quantity in stock
+                 
                     $product_query = $conn->prepare("SELECT * FROM `products` WHERE id = ?");
                     $product_query->execute([$product_id]);
                     if($product_query->rowCount() > 0){
                         $product_data = $product_query->fetch(PDO::FETCH_ASSOC);
                         $available_quantity = $product_data['stock'];
 
-                        // Check if stock is sufficient for the order
                         if($quantity_ordered > $available_quantity){
                             $out_of_stock = true;
                             break;
@@ -119,8 +118,8 @@ if(isset($_POST['order'])){
                 // Delete items from cart after placing order
                 $delete_cart = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
                 $delete_cart->execute([$user_id]);
-                $message[] = 'สั่งซื้อเรียบร้อยแล้ว!';
-            }
+                $message[] = '<span style="color:green;"> สั่งซื้อเรียบร้อยแล้ว! </span> ';
+            }                 
         }
     }
 }
@@ -159,14 +158,14 @@ if(isset($_POST['order'])){
             $cart_total_price = ($fetch_cart_items['price'] * $fetch_cart_items['quantity']);
             $cart_grand_total += $cart_total_price;
    ?>
-   <p> <?= $fetch_cart_items['name']; ?> <span>(<?= '฿'.$fetch_cart_items['price'].'- x '. $fetch_cart_items['quantity']; ?>)</span> </p>
+   <p> <?= $fetch_cart_items['name']; ?> <span>(<?= '฿ '.$fetch_cart_items['price'].'  x'. $fetch_cart_items['quantity']; ?>)</span> ชิ้น </p>
    <?php
     }
    }else{
       echo '<p class="empty">ตะกร้าของคุณว่างเปล่า!</p>';
    }
    ?>
-   <div class="grand-total">รวมทั้งสิ้น : <span>฿<?= $cart_grand_total; ?>-</span></div>
+   <div class="grand-total">รวมทั้งสิ้น : <span>฿ <?= $cart_grand_total; ?></span></div>
 </section>
 
 <section class="checkout-orders">

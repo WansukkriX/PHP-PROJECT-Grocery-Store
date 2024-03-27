@@ -58,7 +58,7 @@ if(!isset($user_id)){
       <p> ที่อยู่ : <span><?= $fetch_orders['address']; ?></span> </p>
       <p> ช่องทางชำระเงิน : <span><?= $fetch_orders['method']; ?></span> </p>
       <p> คำสั่งซื้อของคุณ : <span><?= $fetch_orders['total_products']; ?></span> </p>
-      <p> ราคารวม : <span>฿<?= $fetch_orders['total_price']; ?> -</span> </p>
+      <p> ราคารวม : <span>฿ <?= $fetch_orders['total_price']; ?>  </span> </p>
       <p> สถานะการชำระเงิน : <span style="color:<?php if($fetch_orders['payment_status'] == 'รอดำเนินการ'){ echo 'red'; }else{ echo 'green'; }; ?>"><?= $fetch_orders['payment_status']; ?></span> </p>
    </div>
    <?php

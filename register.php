@@ -23,20 +23,20 @@ if(isset($_POST['submit'])){
    $select->execute([$email]);
 
    if($select->rowCount() > 0){
-      $message[] = 'user email already exist!';
+      $message[] = '<span style="color: red;">มีอีเมลผู้ใช้อยู่แล้ว!</span>';
    }else{
       if($pass != $cpass){
-         $message[] = 'confirm password not matched!';
+         $message[] = '<span style="color: red;">รหัสผ่านไม่ตรงกัน!</span>';
       }else{
          $insert = $conn->prepare("INSERT INTO `users`(name, email, password, image) VALUES(?,?,?,?)");
          $insert->execute([$name, $email, $pass, $image]);
 
          if($insert){
             if($image_size > 2000000){
-               $message[] = 'image size is too large!';
+               $message[] = '<span style="color: red;">ขนาดภาพใหญ่เกินไป!</span>';
             }else{
                move_uploaded_file($image_tmp_name, $image_folder);
-               $message[] = 'registered successfully!';
+               $message[] = '<span style="color: red;">ลงทะเบียนเรียบร้อยแล้ว!</span>  ' ;
                header('location:login.php');
             }
          }

@@ -105,14 +105,14 @@ if(isset($_POST['add_to_cart'])){
      <?php include 'header.php'; ?>
 
 
-
+<!-- หมวดหมู่ -->
      <section class="p-category">
-          <a href="category.php?category=fruits">กระเช้าดอกไม้</a>
-          <a href="category.php?category=vegitables">ช่อดอกไม้</a>
-          <a href="category.php?category=fish">แจกันดอกไม้</a>
-          <a href="category.php?category=meat">กล่องดอกไม้</a>
+          <a href="category.php?category=ผลไม้">ผลไม้</a>
+          <a href="category.php?category=เนื้อ">เนื้อ</a>
+          <a href="category.php?category=ผัก">ผัก</a>
+          <a href="category.php?category=ปลา">ปลา</a>
      </section>
-
+<!-- หมวดหมู่/ -->
      <section class="products">
 
           <section class="search-form">
@@ -146,7 +146,8 @@ if(isset($_POST['add_to_cart'])){
          while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
       ?>
                <form action="" class="box" method="POST">
-                    <div class="price">$<span><?= $fetch_products['price']; ?></span> -</div>
+                    
+                    <div class="price"> <span>฿ <?= $fetch_products['price']; ?></span></div>
                     <img src="uploaded_img/<?= $fetch_products['image']; ?>" height="280px" alt="">
                     <div class="name"><?= $fetch_products['name']; ?></div>
                     <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">

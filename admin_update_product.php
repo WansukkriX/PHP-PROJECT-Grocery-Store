@@ -95,10 +95,10 @@ if(isset($_POST['update_product'])){
       <select name="category" class="box" required>
          <!-- แก้หมวดหมู -->
          <option selected><?= $fetch_products['category']; ?></option>
-         <option value="vegitables">vegitables</option>
-         <option value="fruits">fruits</option>
-         <option value="meat">meat</option>
-         <option value="fish">fish</option>
+         <option value="ผัก">ผัก</option>
+         <option value="ผลไม้">ผลไม้</option>
+         <option value="เนื้อ">เนื้อ</option>
+         <option value="ปลา">ปลา</option>
          <!--  -->
       </select>
       <textarea name="details" required placeholder="enter product details" class="box" cols="30" rows="10"><?= $fetch_products['details']; ?></textarea>
