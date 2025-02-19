@@ -1,7 +1,5 @@
 <?php
-
 @include 'config.php';
-
 session_start();
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
@@ -19,6 +17,7 @@ if(isset($_POST['order'])){
     $email = filter_var($email, FILTER_SANITIZE_STRING);
     $method = $_POST['method'];
     $method = filter_var($method, FILTER_SANITIZE_STRING);
+
     // Separate address components and format them correctly
     $flat = $_POST['flat'];
     $street = ($_POST['street'] ?? '');
@@ -42,8 +41,8 @@ if(isset($_POST['order'])){
             $cart_products[] = $cart_item['name'].' ( '.$cart_item['quantity'].' )';
             $sub_total = ($cart_item['price'] * $cart_item['quantity']);
             $cart_total += $sub_total;
-        };
-    };
+        }
+    }
 
     $total_products = implode(', ', $cart_products);
 
@@ -54,13 +53,12 @@ if(isset($_POST['order'])){
         $order_query->execute([$name, $number, $email, $method, $address, $total_products, $cart_total]);
 
         if($order_query->rowCount() > 0) {
-            $message[] = '<span style="color:green;" >คำสั่งซื้อได้ทำการส่งแล้ว!</span>';
+            $message[] = '<span style="color:green;">คำสั่งซื้อได้ทำการส่งแล้ว!</span>';
         } elseif($cart_total < 0) {
             $message[] = 'จำนวนสินค้าไม่ถูกต้อง';
         } elseif($cart_total == 0) {
             $message[] = 'สินค้าหมด!';
         } else {
-         
             $out_of_stock = false;
             $cart_query = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
             $cart_query->execute([$user_id]);
@@ -69,7 +67,6 @@ if(isset($_POST['order'])){
                     $product_id = $cart_item['pid'];
                     $quantity_ordered = $cart_item['quantity'];
 
-                 
                     $product_query = $conn->prepare("SELECT * FROM `products` WHERE id = ?");
                     $product_query->execute([$product_id]);
                     if($product_query->rowCount() > 0){
@@ -98,14 +95,12 @@ if(isset($_POST['order'])){
                         $product_id = $cart_item['pid'];
                         $quantity_ordered = $cart_item['quantity'];
 
-                        // Update stock quantities
                         $product_query = $conn->prepare("SELECT * FROM `products` WHERE id = ?");
                         $product_query->execute([$product_id]);
                         if($product_query->rowCount() > 0){
                             $product_data = $product_query->fetch(PDO::FETCH_ASSOC);
                             $available_quantity = $product_data['stock'];
 
-                            // Calculate remaining stock after order
                             $remaining_quantity = $available_quantity - $quantity_ordered;
 
                             // Update stock quantities
@@ -123,10 +118,7 @@ if(isset($_POST['order'])){
         }
     }
 }
-
 ?> 
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -134,21 +126,19 @@ if(isset($_POST['order'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>checkout</title>
+   <title>Checkout</title>
    
-   <!-- font awesome cdn link  -->
+   <!-- Font awesome CDN link -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
+   
+   <!-- Custom CSS file link -->
    <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
    
 <?php include 'header.php'; ?>
 
 <section class="display-orders">
-
    <?php
       $cart_grand_total = 0;
       $select_cart_items = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
@@ -169,11 +159,8 @@ if(isset($_POST['order'])){
 </section>
 
 <section class="checkout-orders">
-
    <form action="" method="POST">
-
       <h3>สั่งสินค้าของคุณ</h3>
-
       <div class="flex">
          <div class="inputBox">
             <span>ชื่อของคุณ:</span>
@@ -200,10 +187,6 @@ if(isset($_POST['order'])){
             <span>ที่อยู่ :</span>
             <input type="text" name="flat" placeholder="ป้อนที่อยู่ของคุณ" class="box" required>
          </div>
-         <!-- <div class="inputBox">
-            <span>address line 02 :</span>
-            <input type="text" name="street" placeholder="e.g. street name" class="box" required>
-         </div> -->
          <div class="inputBox">
             <span>เมือง:</span>
             <input type="text" name="city" placeholder="ป้อนเมืองของคุณ" class="box" required>
@@ -221,11 +204,8 @@ if(isset($_POST['order'])){
             <input type="number" min="0" name="pin_code" placeholder="รหัสไปรษณีย์" class="box" required>
          </div>
       </div>
-
       <input type="submit" name="order" class="btn <?= ($cart_grand_total > 1)?'':'disabled'; ?>" value="ส่งคำสั่งซื้อ">
-
    </form>
-
 </section>
 
 <?php include 'footer.php'; ?>

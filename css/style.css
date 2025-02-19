@@ -4,31 +4,40 @@
    font-family: "Kanit", sans-serif;
 }
 .home-bg{
-   background: url(../images/home-bg.jpg) no-repeat;
+   background: url(../images/bg1.jpg) no-repeat;
    background-size: cover;
-   background-position: center;
+   background-position: bottom;
+   background-color: rgba(255, 0, 0, 0.301);
+   filter: blur(0.1px); /* ทำให้ภาพเบลอ */
+
 }
 
 .home-bg .home{
    display: flex;
    align-items: center;
    min-height: 60vh;
+  
+   
 }
 
 .home-bg .home .content{
-   width: 50rem;
+   width: 70rem;
 }
 
 .home-bg .home .content span{
    color:var(--orange);
-   font-size: 2.5rem;
+   font-size: 6.5rem;
+   font-weight: 600;
+   text-shadow: rgb(94, 93, 91) 1px 0 10px;
 }
 
 .home-bg .home .content h3{
    font-size: 3rem;
    text-transform: uppercase;
-   margin-top: 1.5rem;
-   color:var(--black);
+   margin-top: 5rem;
+   color:var(--white);
+   margin-top: -20px;
+   text-shadow: #FC0 1px 0 10px;
 }
 
 .home-bg .home .content p{
@@ -41,8 +50,29 @@
 .home-bg .home .content a{
    display: inline-block;
    width: auto;
+   padding:20px 40px;
 }
 
+.home-bg .home .content .btn{
+   display: inline-block;
+   width: auto;
+   padding:15px 40px;
+   background-color: rgba(255, 204, 0, 0.63);
+   border-radius: 20px;
+   font-size: 3rem;
+}
+.home-bg .home .content .btn:hover {
+   /* เอฟเฟคเปลี่ยนสี */
+   background: #92d33e;  /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+   color: #fff;  /* เปลี่ยนสีตัวอักษร */
+   
+   /* เอฟเฟคขยายขนาด */
+   transform: scale(1.1);
+   transition: all 0.3s ease;
+   
+   /* เอฟเฟคเงา */
+   box-shadow: 0 5px 15px rgba(144, 231, 141, 0.2);
+}
 .home-category .box-container{
    display: grid;
    grid-template-columns: repeat(auto-fit, 27rem);
@@ -52,12 +82,13 @@
 }
 
 .home-category .box-container .box{
-   padding:2rem;
+   padding:1rem;
    text-align: center;
-   border:var(--border);
+   border:var(--border1);
    background-color: var(--white);
    box-shadow: var(--box-shadow);
    border-radius: .5rem;
+   
 }
 
 .home-category .box-container .box img{
@@ -85,6 +116,8 @@
    padding-bottom: 0;
 }
 
+
+/* หน้าแรกแสดงสินค้าแนะนำ====================================== */
 .products .box-container{
    display: grid;
    grid-template-columns: repeat(auto-fit, 35rem);
@@ -94,13 +127,14 @@
 }
 
 .products .box-container .box{
-   padding:2rem;
+   padding:2rem ;
    text-align: center;
-   border:var(--border);
+   /* border:var(--border); */
    background-color: var(--white);
    box-shadow: var(--box-shadow);
    border-radius: .5rem;
    position: relative;
+
 }
 
 .products .box-container .box .price{
@@ -108,19 +142,13 @@
    top:1rem; left:1rem;
    padding:.5rem;
    border-radius: .5rem;
-   background-color: var(--green);
+   background-color: rgba(110, 180, 5, 0.575);
    font-size: 1.8rem;
    color:var(--white);
 }
-.products .box-container .box .price{
-   position: absolute;
-   top:1rem; left:1rem;
-   padding:.5rem;
-   border-radius: .5rem;
-   background-color: var(--green);
-   font-size: 1.8rem;
-   color:var(--white);
-}
+
+
+
 
 .products .box-container .box .price span{
    font-size: 2.0rem;
@@ -150,7 +178,7 @@
    width: 100%;
    margin-bottom: 1rem;
    object-fit: contain;
-   height: 200px;
+   height: 220px;
    border-bottom: 1px solid rgba(57, 57, 57, 0.286);
 
 }
@@ -160,6 +188,7 @@
    font-size: 2rem;
    color:var(--black);
    padding:1rem 0;
+   height: 80px;
 }
 
 .products .box-container .box .qty{
@@ -175,9 +204,9 @@
 /* .products .box-container .box .qty-1{
    display: none;
 } */
-
+/* =========================================หน้า view_page */
 .quick-view .box{
-   max-width: 50rem;
+   max-width: 65rem;
    padding:2rem;
    text-align: center;
    border:var(--border);
@@ -191,6 +220,7 @@
 .quick-view .box img{
    height: 25rem;
    margin-bottom: 1rem;
+   border-bottom: 2px solid bla;
 }
 
 
@@ -202,6 +232,7 @@
    background-color: var(--green);
    font-size: 1.rem;
    color:var(--white);
+   
 }
 
 .quick-view .box .price span{
@@ -211,27 +242,59 @@
 }
 
 .quick-view .box .qty{
-   margin:.5rem 0;
-   border-radius: .5rem;
-   padding:1.2rem 1.4rem;
+   margin:1.3rem 0;
+   border-radius: 5rem;
+   padding:1rem 1.4rem;
    font-size: 1.8rem;
    color:var(--black);
-   border:var(--border);
-   width: 100%;
+   border:var(--border1);
+ 
+   text-align: center;
+}
+.quick-view .box .quatity{
+ 
+
+   font-size: 1.8rem;
+   color:rgba(133, 130, 130, 0.911);
+  
 }
 
 .quick-view .box .name{
-   font-size: 2rem;
+   border-top: 2px solid rgba(167, 166, 166, 0.616);
+   font-size: 2.7rem;
    color:var(--black);
    padding:1rem 0;
+   font-weight: 500;
+   text-align: start;
+}
+.quick-view .box .bg-box{
+  background-color: rgba(180, 180, 180, 0.11);
+  width: 100%;
+  padding: 10px;
+  border-radius: 7px;
 }
 
-.quick-view .box .details{
-   padding:1rem 0;
+.quick-view .box .details {
+   padding: 1rem 0;
    line-height: 2;
-   font-size: 1.5rem;
-   color:var(--light-color);
+   font-size: 1.8rem;
+   color: var(--light-color);
+   text-align: start;
+   word-break: break-word; /* ให้ข้อความยาวเกินไปสามารถแบ่งบรรทัดใหม่ได้ */
+   word-spacing: 0.2rem; /* เพิ่มระยะห่างระหว่างคำ */
+   white-space: normal; /* ยกเลิกการตัดคำที่ขอบบรรทัด */
 }
+.quick-view .box .details span{
+   padding: 1rem 0;
+   line-height: 2;
+   font-size: 1.8rem;
+   color: var(--gray1);
+   text-align: start;
+   font-size: 2rem;
+   font-weight: 500;
+
+}
+
 
 .p-category{
    display: grid;
@@ -559,14 +622,18 @@
 
 .quick-view  .box .stock{
    padding:1rem 0;
-  
+   margin-left: 10px;
+   text-align: start;
    font-size: 2rem;
+   color:var(--gray2);
+   
 }
 
 .quick-view .box .stock span{
    font-size: 1.8rem;
    color:var(--green);
    margin:0 .2rem;
+  
 }
 
 .shopping-cart .box-container .box .fa-eye{
@@ -762,6 +829,12 @@
 
 .placed-orders .box-container .box p span{
    color:var(--green);
+}
+.placed-orders .box-container .box a{
+   color:rgb(255, 174, 0);
+   font-size: 2.5rem;
+   text-align: end;
+   display: block;
 }
 
 

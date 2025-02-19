@@ -34,11 +34,11 @@ if(isset($_POST['update_product'])){
    $update_product = $conn->prepare("UPDATE `products` SET name = ?, category = ?, details = ?, price = ?, stock = ? WHERE id = ?");
    $update_product->execute([$name, $category, $details, $price, $stock, $pid]);
 
-   $message[] = 'product updated successfully!';
+   $message[] = 'อัปเดตผลิตภัณฑ์สำเร็จแล้ว';
 
    if(!empty($image)){
       if($image_size > 2000000){
-         $message[] = 'image size is too large!';
+         $message[] = 'ขนาดภาพใหญ่เกินไป';
       }else{
 
          $update_image = $conn->prepare("UPDATE `products` SET image = ? WHERE id = ?");
@@ -47,7 +47,7 @@ if(isset($_POST['update_product'])){
          if($update_image){
             move_uploaded_file($image_tmp_name, $image_folder);
             unlink('uploaded_img/'.$old_image);
-            $message[] = 'image updated successfully!';
+            $message[] = 'อัปเดตภาพสำเร็จแล้ว!';
          }
       }
    }
@@ -92,26 +92,28 @@ if(isset($_POST['update_product'])){
       <input type="text" name="name" placeholder="enter product name" required class="box" value="<?= $fetch_products['name']; ?>">
       <input type="number" name="price" min="0" placeholder="enter product price" required class="box" value="<?= $fetch_products['price']; ?>">
       <input type="number" name="stock" min="0" placeholder="enter product stock" required class="box" value="<?= $fetch_products['stock']; ?>">
+      
       <select name="category" class="box" required>
          <!-- แก้หมวดหมู -->
          <option selected><?= $fetch_products['category']; ?></option>
-         <option value="ผัก">ผัก</option>
-         <option value="ผลไม้">ผลไม้</option>
-         <option value="เนื้อ">เนื้อ</option>
-         <option value="ปลา">ปลา</option>
+       
+               <option value="1">ของใช้ในบ้านและสุขภาพ</option>
+               <option value="2">ผลิตภัณฑ์สำหรับสัตว์เลี้ยง</option>
+               <option value="3">ผลิตภัณฑ์นมและเครื่องดื่ม</option>
+               <option value="4">ข้าวสารและแป้ง</option>
          <!--  -->
       </select>
       <textarea name="details" required placeholder="enter product details" class="box" cols="30" rows="10"><?= $fetch_products['details']; ?></textarea>
       <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png">
       <div class="flex-btn">
-         <input type="submit" class="btn" value="update product" name="update_product">
-         <a href="admin_products.php" class="option-btn">go back</a>
+         <input type="submit" class="btn" value="แก้ไข้" name="update_product">
+         <a href="admin_products.php" class="option-btn">กลับ</a>
       </div>
    </form>
    <?php
          }
       }else{
-         echo '<p class="empty">no products found!</p>';
+         echo '<p class="empty">ไม่พบผลิตภัณฑ์!</p>';
       }
    ?>
 

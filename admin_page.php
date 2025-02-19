@@ -44,7 +44,7 @@ if(!isset($admin_id)){
     $fetch_pendings = $select_pendings->fetch(PDO::FETCH_ASSOC);
     $total_pending = $fetch_pendings['total_pending'];
     ?>
-    <h3>฿<?= $total_pending ? $total_pending : 0; ?> -</h3>
+    <h3>฿<?= $total_pending ? $total_pending : 0; ?> </h3>
     <p>รวมยอดที่รอดำเนินการ</p>
     <a href="admin_orders.php?status=pending" class="btn">ดูคำสั่งซื้อ</a>
 </div>
@@ -56,7 +56,7 @@ if(!isset($admin_id)){
     $fetch_completed = $select_completed->fetch(PDO::FETCH_ASSOC);
     $total_completed = $fetch_completed['total_completed'];
     ?>
-    <h3>฿<?= $total_completed ? $total_completed : 0; ?> -</h3>
+    <h3>฿<?= $total_completed ? $total_completed : 0; ?> </h3>
     <p>คำสั่งซื้อที่เสร็จสมบูรณ์</p>
     <a href="admin_orders.php?status=completed" class="btn">ดูคำสั่งซื้อ</a>
 </div>

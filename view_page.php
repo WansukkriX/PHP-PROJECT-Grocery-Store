@@ -122,14 +122,23 @@ if(isset($_POST['add_to_cart'])){
           <form action="" class="box" method="POST">
                <div class="price"> <span>฿ <?= $fetch_products['price']; ?></span></div>
                <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
+
+             
                <div class="name"><?= $fetch_products['name']; ?></div>
-               <div class="details"><?= $fetch_products['details']; ?></div>
-               <div class="stock">มีสินค้าทั้งหมด  <span><?= $fetch_products['stock']; ?> </span>ชิ้น</div>
+
+            <div class="bg-box">
+               <div class="details"><span>รายละเอียด</span><br><?= $fetch_products['details']; ?></div>
+              
+               </div>
+               <div class="stock">มีสินค้า <span><?= $fetch_products['stock']; ?> </span>ชิ้น</div>
                     <?php if ($fetch_products['stock'] == 0) { ?>
                     <span style="color: red;">(สินค้าหมด)</span>
                     <?php } else { ?>
-                    <input type="number" min="1" max="<?= $fetch_products['stock']; ?>" value="1" name="p_qty"
-                         class="qty">
+
+                     <div class="quatity">จำนวน <input type="number" min="1" max="<?= $fetch_products['stock']; ?>" value="1" name="p_qty"
+                     class="qty"> 
+                  </span>ชิ้น</div>  
+                    
                     <?php } ?>
 
                     <?php if (isset($_SESSION['user_id'])) { ?>
@@ -143,6 +152,7 @@ if(isset($_POST['add_to_cart'])){
                     <a href="login.php" class="btn">เข้าสู่ระบบ เพื่อทำการเพิ่มสินค้า</a>
                     <?php } ?>
                </div>
+               
                <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
                <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
                <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">

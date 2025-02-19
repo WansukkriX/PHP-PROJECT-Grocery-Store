@@ -12,24 +12,25 @@
 
       <div class="box">
          <h3>หมวดหมู่</h3>
-         <a href="cart.php"> <i class="fas fa-angle-right"></i> #</a>
-         <a href="wishlist.php"> <i class="fas fa-angle-right"></i> #</a>
-         <a href="login.php"> <i class="fas fa-angle-right"></i> #</a>
-         <a href="register.php"> <i class="fas fa-angle-right"></i> #</a>
+         <a href="#"> <i class="fas fa-angle-right"></i> ของใช้ในบ้านและสุขภาพ</a>
+         <a href="#"> <i class="fas fa-angle-right"></i> ผลิตภัณฑ์สำหรับสัตว์เลี้ยง</a>
+         <a href="#"> <i class="fas fa-angle-right"></i>ผลิตภัณฑ์นมและเครื่องดื่ม</a>
+         <a href="#"> <i class="fas fa-angle-right"></i>ข้าวสารและแป้ง</a>
       </div>
 
       <div class="box">
          <h3>ข้อมูลติดต่อ</h3>
+         
          <p> <i class="fas fa-phone"></i> 09999999 </p>
          <p> <i class="fas fa-phone"></i> 08888888 </p>
-         <p> <i class="fas fa-envelope"></i> testt@gmail.com </p>
-         <p> <i class="fas fa-map-marker-alt"></i> // // // // </p>
+         <p> <i class="fas fa-envelope"></i> chochai@gmail.com </p>
+         <!-- <p> <i class="fas fa-map-marker-alt"></i> // // // // </p> -->
       </div>
 
       <div class="box">
          <h3>ติดตามเรา</h3>
          <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
-         <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+         <!-- <a href="#"> <i class="fab fa-twitter"></i> twitter </a> -->
          <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
          <a href="#"> <i class="fab fa-line"></i> line </a>
       </div>

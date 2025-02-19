@@ -1,14 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
 
 :root{
-   --green:#27ae60;
+   --green:#8ac52b;
    --orange:#f39c12;
    --red:#e74c3c;
    --black:#333;
+   --gray:#658d6b8e;
+   --gray1:#3535358e;
+   --gray2:#2222228e;
+
    --light-color:#666;
    --white:#fff;
    --light-bg:#f6f6f6;
    --border:.2rem solid var(--black);
+   --border1:.1rem solid var(--gray);
    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
 }
 
@@ -70,7 +75,7 @@ section{
    display: block;
    width: 100%;
    margin-top: 1rem;
-   border-radius: .5rem;
+   border-radius: 4rem;
    color:var(--white);
    font-size: 2rem;
    padding:1.3rem 1rem;
@@ -157,7 +162,7 @@ section{
    background: var(--white);
    color:var(--red);
    border-radius: .5rem;
-   border:var(--border);
+   /* border:var(--border); */
    font-size: 2rem;
    text-align: center;
    box-shadow: var(--box-shadow);
@@ -231,25 +236,28 @@ section{
    display: flex;
    align-items: center;
    justify-content: space-between;
-   padding:2rem;
+   padding:1.5rem;
    margin: 0 auto;
    max-width: 1200px;
    position: relative;
 }
 
 .header .flex .logo{
-   font-size: 2.5rem;
+   font-size: 3rem;
    color:var(--black);
+   font-weight: 700;
 }
 
 .header .flex .logo span{
    color:var(--green);
+   font-weight: 700;
 }
 
 .header .flex .navbar a{
-   margin:0 1rem;
-   font-size: 2rem;
-   color:var(--light-color);
+   margin:0 3rem;
+   font-size: 2.5rem;
+   color:rgb(107, 106, 106);
+   font-weight: 500;
 }
 
 .header .flex .navbar a:hover{
@@ -258,11 +266,19 @@ section{
 }
 
 .header .flex .icons > *{
-   font-size: 2.5rem;
+   font-size: 2.8rem;
    color:var(--light-color);
    cursor: pointer;
    margin-left: 1.5rem;
 }
+/* .header .flex .icons .di{
+ 
+   color:var(--light-color);
+   cursor: pointer;
+   margin-right: -10px;
+   font-size: 20px;
+   display: inline  ;
+} */
 
 .header .flex .icons > *:hover{
    color:var(--green);
@@ -380,7 +396,7 @@ section{
 
 .footer{
    background-color: var(--white);
-  
+
 }
 
 .footer .box-container{
@@ -394,7 +410,7 @@ section{
 .footer .box-container .box h3{
    text-transform: uppercase;
    color:var(--black);
-   margin-bottom: 1.5rem;
+   margin-bottom:    rem;
    font-size: 2rem;
 }
 .footer .box-container .box {
@@ -470,6 +486,8 @@ section{
    .header .flex .navbar a{
       display: block;
       margin:2rem;   
+      color: black;
+      font-weight: 200;
    }
 
    .update-profile form .flex{

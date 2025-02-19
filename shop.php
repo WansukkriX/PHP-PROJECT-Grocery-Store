@@ -107,10 +107,10 @@ if(isset($_POST['add_to_cart'])){
 
 <!-- หมวดหมู่ -->
      <section class="p-category">
-          <a href="category.php?category=ผลไม้">ผลไม้</a>
-          <a href="category.php?category=เนื้อ">เนื้อ</a>
-          <a href="category.php?category=ผัก">ผัก</a>
-          <a href="category.php?category=ปลา">ปลา</a>
+          <a href="category.php?category=1">ของใช้ในบ้านและสุขภาพ</a>
+          <a href="category.php?category=2">ผลิตภัณฑ์สำหรับสัตว์เลี้ยง</a>
+          <a href="category.php?category=3">ผลิตภัณฑ์นมและเครื่องดื่ม</a>
+          <a href="category.php?category=4">ข้าวสารและแป้ง</a>
      </section>
 <!-- หมวดหมู่/ -->
      <section class="products">

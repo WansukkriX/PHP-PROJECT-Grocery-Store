@@ -33,7 +33,7 @@ if(isset($_POST['add_product'])){
    $select_products->execute([$name]);
 
    if($select_products->rowCount() > 0){
-      $message[] = 'product name already exist!';
+      $message[] = 'ชื่อสินค้ามีอยู่แล้ว!';
    }else{
 
       $insert_products = $conn->prepare("INSERT INTO `products`(name, category, details, price, stock, image) VALUES(?,?,?,?,?,?)");
@@ -44,7 +44,7 @@ if(isset($_POST['add_product'])){
             $message[] = 'image size is too large!';
          }else{
             move_uploaded_file($image_tmp_name, $image_folder);
-            $message[] = 'new product added!';
+            $message[] = 'เพิ่มสินค้าใหม่แล้ว!';
          }
 
       }
@@ -101,10 +101,10 @@ if(isset($_GET['delete'])){
             <input type="text" name="name" class="box" required placeholder="ชื่อสินค้า">
             <select name="category" class="box" required>
                <option value="" selected disabled>เลือกหมวดหมู่</option>
-               <option value="ผัก">ผัก</option>
-               <option value="ผลไม้">ผลไม้</option>
-               <option value="เนื้อ">เนื้อ</option>
-               <option value="fish">ปลา</option>
+               <option value="1">ของใช้ในบ้านและสุขภาพ</option>
+               <option value="2">ผลิตภัณฑ์สำหรับสัตว์เลี้ยง</option>
+               <option value="3">ผลิตภัณฑ์นมและเครื่องดื่ม</option>
+               <option value="4">ข้าวสารและแป้ง</option>
             </select>
          </div>
          <div class="inputBox">
@@ -133,12 +133,28 @@ if(isset($_GET['delete'])){
             while($fetch_products = $show_products->fetch(PDO::FETCH_ASSOC)){  
       ?>
       <div class="box">
-         <div class="price">฿<?= $fetch_products['price']; ?> -</div>
-         <div class="stock">มีสินค้าทั้งหมด <span><?= $fetch_products['stock']; ?> </span>ชิ้น </div>
+         <div class="price">฿ <?= $fetch_products['price']; ?> </div>
+         <div class="stock">มีสินค้าทั้งหม <span><?= $fetch_products['stock']; ?> </span>ชิ้น </div>
          
          <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
          <div class="name"><?= $fetch_products['name']; ?></div>
-         <div class="cat"><?= $fetch_products['category']; ?></div>
+         <div class="cat">
+            <span>หมวดหมู่</span>
+            <br>
+   <?php
+      $category_names = [
+         1 => 'ของใช้ในบ้านและสุขภาพ',
+         2 => 'ผลิตภัณฑ์สำหรับสัตว์เลี้ยง',
+         3 => 'ผลิตภัณฑ์นมและเครื่องดื่ม',
+         4 => 'ข้าวสารและแป้ง'
+      ];
+    
+      // ใช้ค่าของ category ID ที่ดึงมาแล้วแมปไปยังชื่อหมวดหมู่
+      $category_name = $category_names[$fetch_products['category']] ?? 'หมวดหมู่ไม่ระบุ';
+      echo $category_name;
+   ?>
+</div>
+
          <!-- <div class="details"><?= $fetch_products['details']; ?></div> -->
          <div class="flex-btn">
             <a href="admin_update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">แก้ไข้</a>

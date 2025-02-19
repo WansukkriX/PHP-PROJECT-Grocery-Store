@@ -13,7 +13,7 @@ if(!isset($_SESSION['user_id'])){
 }
 
 if(isset($_POST['add_to_wishlist'])){
-
+   // รหัสสินค้า
    $pid = $_POST['pid'];
    $pid = filter_var($pid, FILTER_SANITIZE_STRING);
    $p_name = $_POST['p_name'];
@@ -38,11 +38,10 @@ if(isset($_POST['add_to_wishlist'])){
       $insert_wishlist->execute([$user_id, $pid, $p_name, $p_price, $p_image]);
       $message[] = 'added to wishlist!';
    }
-
 }
 
 if(isset($_POST['add_to_cart'])){
-
+   // รหัสสินค้า
    $pid = $_POST['pid'];
    $pid = filter_var($pid, FILTER_SANITIZE_STRING);
    $p_name = $_POST['p_name'];
@@ -60,7 +59,6 @@ if(isset($_POST['add_to_cart'])){
    if($check_cart_numbers->rowCount() > 0){
       $message[] = 'already added to cart!';
    }else{
-
       $check_wishlist_numbers = $conn->prepare("SELECT * FROM `wishlist` WHERE name = ? AND user_id = ?");
       $check_wishlist_numbers->execute([$p_name, $user_id]);
 
@@ -73,7 +71,6 @@ if(isset($_POST['add_to_cart'])){
       $insert_cart->execute([$user_id, $pid, $p_name, $p_price, $p_qty, $p_image]);
       $message[] = 'added to cart!';
    }
-
 }
 
 ?>
@@ -99,13 +96,27 @@ if(isset($_POST['add_to_cart'])){
 
 <section class="products">
 
-<h1 class="title">หมวดหมู่ <?php echo $_GET['category']; ?></h1>
-
+   <h1 class="title">
+      <?php
+         // แสดงข้อความตามค่าของ category ที่ส่งมาจาก URL
+         $category_name = $_GET['category'];
+         if ($category_name == "1") {
+            echo "ของใช้ในบ้านและสุขภาพ";
+         } elseif ($category_name == "3") {
+            echo "ผลิตภัณฑ์นมและเครื่องดื่ม";
+         } elseif ($category_name == "2") {
+            echo "ผลิตภัณฑ์สำหรับสัตว์เลี้ยง";
+         } elseif ($category_name == "4") {
+            echo "ข้าวสารและแป้ง";
+         } else {
+            echo "หมวดหมู่สินค้า";
+         }
+      ?>
+   </h1>
 
    <div class="box-container">
 
    <?php
-      $category_name = $_GET['category'];
       $select_products = $conn->prepare("SELECT * FROM `products` WHERE category = ?");
       $select_products->execute([$category_name]);
       if($select_products->rowCount() > 0){
@@ -121,27 +132,19 @@ if(isset($_POST['add_to_cart'])){
       <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
       <input type="number" min="1" value="1" name="p_qty" class="qty" style="display:none">
       <div class="add">
-                         <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="option-btn">รายละเอียด</a>
-                         
-                        
-                    </div>
+         <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="option-btn">รายละเอียด</a>
+      </div>
    </form>
    <?php
          }
       }else{
-         echo '<p class="empty">no products available!</p>';
+         echo '<p class="empty">ไม่มีสินค้าวางจำหน่าย</p>';
       }
    ?>
 
    </div>
 
 </section>
-
-
-
-
-
-
 
 <?php include 'footer.php'; ?>
 

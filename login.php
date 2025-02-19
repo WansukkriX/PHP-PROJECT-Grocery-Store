@@ -6,14 +6,14 @@ session_start();
 
 if(isset($_POST['submit'])){
 
-   $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $name = $_POST['name'];
+   $name = filter_var($name, FILTER_SANITIZE_STRING);
    $pass = md5($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
 
-   $sql = "SELECT * FROM `users` WHERE email = ? AND password = ?";
+   $sql = "SELECT * FROM `users` WHERE name = ? AND password = ?";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$email, $pass]);
+   $stmt->execute([$name, $pass]);
    $rowCount = $stmt->rowCount();  
 
    $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -83,7 +83,7 @@ if(isset($message)){
 
    <form action="" method="POST">
       <h3>เข้าสู่ระบบ</h3>
-      <input type="email" name="email" class="box" placeholder="ป้อนอีเมล์ของคุณ" required>
+      <input type="name" name="name" class="box" placeholder="ป้อนอีเมล์ของคุณ" required>
       <input type="password" name="pass" class="box" placeholder="ป้อนรหัสผ่าน" required>
       <input type="submit" value="เข้าสู่ระบบ" class="btn" name="submit">
       <p>ไม่มีบัญชีหรือไม่? <a href="register.php">สร้างบัญชี</a></p>

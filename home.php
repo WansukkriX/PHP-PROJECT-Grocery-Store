@@ -1,7 +1,7 @@
 <?php
 
 @include 'config.php';
-
+header('Content-Type: text/html; charset=utf-8');
 session_start();
 
 if(isset($_SESSION['user_id'])){
@@ -97,9 +97,9 @@ if(isset($_SESSION['user_id'])){
           <section class="home">
 
                <div class="content">
-                    <span>อาหารสดใหม่ กินแล้วขึ้แน่นอน</span>
-                    <h3>เข้าถึงคุณเพื่อสุขภาพที่ดียิ่งขึ้นด้วยอาหารออร์แกนิก</h3>
-                    <a href="about.php" class="btn">เกี่ยวกับเรา</a>
+                    <span>ยินดีต้อนรับสู่ร้านโชคชัย</span>
+                    <h3>ช้อปของชำออนไลน์ สะดวก ส่งเร็ว ครบจบในร้านเดียว</h3>
+                    <a href="shop.php" class="btn">ดูสิค้า</a>
                </div>
 
           </section>
@@ -113,28 +113,31 @@ if(isset($_SESSION['user_id'])){
           <div class="box-container">
 <!-- หมวดหมู่ -->
                <div class="box">
-                    <img src="images/cat-1.png"  alt="">
+                    <img src="images/s1.jpg"  alt="">
                     
-                    <a href="category.php?category=ผลไม้" class="btn">ผลไม้</a>
+                    <a href="category.php?category=1" class="btn">ของใช้ในบ้านและสุขภาพ</a>
                </div>
 
                <div class="box">
-                    <img src="images/cat-2.png"  alt="">
+                    <img src="images/as.png"  alt="">
                    
-                    <a href="category.php?category=เนื้อ" class="btn">เนื้อ</a>
+                    <a href="category.php?category=2" class="btn">ผลิตภัณฑ์สำหรับสัตว์เลี้ยง</a>
                </div>
 
                <div class="box">
-                    <img src="images/cat-3.png"  alt="">
+                    <img src="images/as1.png"  alt="">
                    
-                    <a href="category.php?category=ผัก" class="btn">ผัก</a>
+                    <a href="category.php?category=3" class="btn">ผลิตภัณฑ์นมและเครื่องดื่ม</a>
                </div>
 
+             
+
                <div class="box">
-                    <img src="images/cat-4.png"  alt="">
+                    <img src="images/sd.png"  alt="">
                    
-                    <a href="category.php?category=ปลา" class="btn">ปลา</a>
+                    <a href="category.php?category=4" class="btn">ข้าวสารและแป้ง</a>
                </div>
+          
 
           </div>
 <!-- หมวดหมู่/ -->
@@ -142,7 +145,7 @@ if(isset($_SESSION['user_id'])){
 
      <section class="products">
 
-          <h1 class="title">สินค้าใหม่ล่าสุด </h1>
+          <h1 class="title">สินค้าแนะนำ</h1>
 
           <div class="box-container">
 
@@ -159,15 +162,21 @@ if(isset($_SESSION['user_id'])){
                          
                          <div class="name"><?= $fetch_products['name']; ?></div>
                          <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
-                         <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
+
+                         <div class="product-title">
+                              <input class="title" type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
+                         </div>
+
                          <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
                          <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
                          <input type="number" min="1" value="1" name="p_qty" class="qty" style="display:none" >
                          <div class="add">
                               <a href="view_page.php?pid=<?= $fetch_products['id']; ?>"
-                                   class="option-btn">รายละเอียด</a>
-                             
+                                   class="option-btn">รายละเอียด</a>                        
                          </div>
+                         <!-- <div class="add">
+                               <input type="submit" value="🔍เพิ่มในตะกร้า" class="btn" name="add_to_cart">                     
+                         </div> -->
 
                     </a>
 

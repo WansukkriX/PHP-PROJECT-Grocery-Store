@@ -29,8 +29,6 @@ if(!isset($user_id)){
    </style>
  
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-  
    <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -60,6 +58,9 @@ if(!isset($user_id)){
       <p> คำสั่งซื้อของคุณ : <span><?= $fetch_orders['total_products']; ?></span> </p>
       <p> ราคารวม : <span>฿ <?= $fetch_orders['total_price']; ?>  </span> </p>
       <p> สถานะการชำระเงิน : <span style="color:<?php if($fetch_orders['payment_status'] == 'รอดำเนินการ'){ echo 'red'; }else{ echo 'green'; }; ?>"><?= $fetch_orders['payment_status']; ?></span> </p>
+   
+      <!-- ปุ่มดาวน์โหลดใบเสร็จ -->
+      <a href="download_receipt.php?order_id=<?= $fetch_orders['id']; ?>" class="download-btn">ดาวน์โหลดใบเสร็จ</a>
    </div>
    <?php
       }
@@ -71,14 +72,6 @@ if(!isset($user_id)){
    </div>
 
 </section>
-
-
-
-
-
-
-
-
 
 <?php include 'footer.php'; ?>
 
